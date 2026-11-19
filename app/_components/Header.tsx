@@ -4,10 +4,26 @@ import { useEffect, useRef, useState } from "react";
 import { asset } from "../asset";
 import { messageHref, nav, socials } from "../content";
 
-/** Sticky header with the "Menu" overlay: stacked serif links rising 35ms apart, Escape and scroll lock. */
+/** Sticky header (clear at the top, frosted once scrolled) with the "Menu" overlay: stacked serif links rising 35ms apart, Escape and scroll lock. */
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
+
+  // Clear glass at the very top so the hero glow shines through; frost once the page scrolls.
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setScrolled(window.scrollY > 8));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -30,7 +46,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="hd" data-open={open || undefined}>
+    <header className="hd" data-open={open || undefined} data-scrolled={scrolled || undefined}>
       <button ref={toggle} className="menu-btn" type="button" aria-expanded={open} aria-controls="menu" onClick={() => setOpen((v) => !v)}>
         <span className="a">Menu</span>
         <span className="b" aria-hidden="true">
