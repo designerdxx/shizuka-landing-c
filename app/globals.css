@@ -87,7 +87,7 @@ body{margin:0;background:#0B0908}
 .lab{display:flex;align-items:center;gap:12px;font:500 14px/1 var(--font-ui),system-ui,sans-serif}
 .lab svg{flex:none}
 .big{font:400 clamp(26px,2.45vw,36px)/1.24 var(--font-display),Georgia,serif;letter-spacing:-.01em;max-width:24em}
-.big+.big{text-indent:2.2em}
+.big+.big{margin-top:.6em}
 .big .dim{color:var(--dim)}
 .after{margin-top:28px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .after small{font-size:14px;color:var(--dim)}
