@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { asset } from "./asset";
 import { categories, messageHref, socials, steps } from "./content";
 import { Header } from "./_components/Header";
+import { Ambient } from "./_components/Ambient";
 import { HeroReady } from "./_components/HeroReady";
 import { Reveal } from "./_components/Reveal";
 
@@ -40,7 +41,8 @@ export default function Home() {
       <main id="main">
         <section className="hero" id="top" aria-labelledby="h1">
           <div className="glow" aria-hidden="true">
-            <img src={asset("/images/glow-hero.jpg")} alt="" />
+            <img className="g1" src={asset("/images/glow-hero.jpg")} alt="" />
+            <img className="g2" src={asset("/images/glow-hero-2.jpg")} alt="" />
           </div>
           <div className="hero-copy">
             <h1 className="h1" id="h1">
@@ -223,7 +225,8 @@ export default function Home() {
 
         <section className="close" aria-labelledby="cta-h">
           <div className="glow" aria-hidden="true">
-            <img src={asset("/images/glow-close.jpg")} alt="" loading="lazy" decoding="async" />
+            <img className="g1" src={asset("/images/glow-close.jpg")} alt="" loading="lazy" decoding="async" />
+            <img className="g2" src={asset("/images/glow-close-2.jpg")} alt="" loading="lazy" decoding="async" />
           </div>
           <div data-r="">
             <h2 id="cta-h">Start your private sale.</h2>
@@ -249,6 +252,7 @@ export default function Home() {
         <a href={socials.instagram}>Instagram</a>
       </footer>
       <HeroReady selector=".hero" />
+      <Ambient selector=".glow" />
       <Reveal root=".ah" />
     </div>
   );
