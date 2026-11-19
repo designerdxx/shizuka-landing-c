@@ -14,13 +14,14 @@ body{margin:0;background:#0B0908}
 .serif{font-family:var(--font-display),Georgia,serif;font-weight:400;letter-spacing:-.01em}
 
 /* pills */
-.pill{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:999px;border:0;font:500 14px/1 var(--font-ui),system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:color 200ms var(--std),transform 120ms var(--std)}
-.pill::before{content:"";position:absolute;inset:-1px;z-index:-1;background:var(--wipe);transform:scaleX(0);transform-origin:right center;transition:transform 200ms var(--in)}
-.pill:hover::before,.pill:focus-visible::before{transform:scaleX(1);transform-origin:left center;transition:transform 280ms var(--out)}
+.pill{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:999px;border:0;font:500 14px/1 var(--font-ui),system-ui,sans-serif;white-space:nowrap;cursor:pointer;text-decoration:none;transition:color 150ms var(--in),transform 120ms var(--std)}
+/* C buttons: a plain crossfade (no wipe) — in 200ms ease-out, out 150ms ease-in, press to 0.98 */
+.pill::before{content:"";position:absolute;inset:-1px;z-index:-1;background:var(--wipe);opacity:0;transition:opacity 150ms var(--in)}
+.pill:hover::before,.pill:focus-visible::before{opacity:1;transition:opacity 200ms var(--out)}
 .pill:active{transform:scale(.98)}
 .pill-solid{background:var(--cream);color:var(--ink);--wipe:#D9C9A8}
 .pill-line{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px rgba(244,239,232,.7);--wipe:var(--cream)}
-.pill-line:hover,.pill-line:focus-visible{color:var(--ink)}
+.pill-line:hover,.pill-line:focus-visible{color:var(--ink);transition:color 200ms var(--out),transform 120ms var(--std)}
 .more-row{display:flex;justify-content:flex-end;margin-top:20px}
 .more{display:inline-flex;align-items:center;gap:14px;min-height:44px;font:500 15px/1.2 var(--font-ui),system-ui,sans-serif;color:var(--cream)}
 .more>span{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:3px;transition:background-size 200ms var(--in)}
