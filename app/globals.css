@@ -139,8 +139,9 @@ body{margin:0;background:#0B0908}
 
 /* closing glow */
 .close{position:relative;isolation:isolate;margin-top:160px;height:720px;display:grid;place-items:center;text-align:center;padding:0 var(--g)}
-.close .glow .g1{animation-name:drift-d;animation-duration:15s;animation-delay:-4s;transform-origin:28% 30%}
-.close .glow .g2{animation-name:drift-e;animation-duration:19s;animation-delay:-9s;transform-origin:72% 70%}
+/* closing band: the two lights sweep past each other along the top and bottom edges, clear of the centred text */
+.close .glow .g1{animation-name:drift-d;animation-duration:8s;animation-delay:-2s;transform-origin:28% 30%}
+.close .glow .g2{animation-name:drift-e;animation-duration:10s;animation-delay:-6s;transform-origin:72% 70%}
 .close h2{font:400 clamp(40px,4.4vw,68px)/1.05 var(--font-display),Georgia,serif;letter-spacing:-.015em}
 .close p{margin:18px auto 30px;max-width:40ch;color:rgba(244,239,232,.8);font-size:16px;line-height:1.55}
 .close .acts{justify-content:center}
@@ -160,8 +161,8 @@ body{margin:0;background:#0B0908}
 @keyframes drift-a{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:1}50%{transform:translate3d(-9%,4%,0) scale(1.12) rotate(-4deg);opacity:.82}100%{transform:translate3d(-4%,7%,0) scale(1.05) rotate(2deg);opacity:1}}
 @keyframes drift-b{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:.88}50%{transform:translate3d(8%,-5%,0) scale(1.12) rotate(4deg);opacity:1}100%{transform:translate3d(4%,-8%,0) scale(1.05) rotate(-2deg);opacity:.86}}
 @keyframes drift-c{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:1}50%{transform:translate3d(6%,2%,0) scale(1.1) rotate(3deg);opacity:.8}100%{transform:translate3d(2%,4%,0) scale(1.04) rotate(-2deg);opacity:.95}}
-@keyframes drift-d{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:.85}50%{transform:translate3d(12%,6%,0) scale(1.16) rotate(6deg);opacity:1}100%{transform:translate3d(5%,10%,0) scale(1.06) rotate(-3deg);opacity:.8}}
-@keyframes drift-e{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:1}50%{transform:translate3d(-12%,-6%,0) scale(1.16) rotate(-6deg);opacity:.82}100%{transform:translate3d(-5%,-10%,0) scale(1.06) rotate(3deg);opacity:1}}
+@keyframes drift-d{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:.72}50%{transform:translate3d(7%,2%,0) scale(1.14) rotate(3deg);opacity:1}100%{transform:translate3d(12%,0,0) scale(1.04) rotate(-2deg);opacity:.78}}
+@keyframes drift-e{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg);opacity:1}50%{transform:translate3d(-7%,-2%,0) scale(1.14) rotate(-3deg);opacity:.74}100%{transform:translate3d(-12%,0,0) scale(1.04) rotate(2deg);opacity:1}}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
