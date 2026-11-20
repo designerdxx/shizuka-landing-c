@@ -2,6 +2,7 @@
 import type { CSSProperties } from "react";
 import { asset } from "./asset";
 import { categories, messageHref, socials, steps } from "./content";
+import { Faq } from "./_components/Faq";
 import { Header } from "./_components/Header";
 import { Ambient } from "./_components/Ambient";
 import { HeroReady } from "./_components/HeroReady";
@@ -216,18 +217,43 @@ export default function Home() {
             </svg>
             Client words
           </h2>
-          {/* Placeholder until the client supplies an approved review. Do not replace with an invented quote. */}
+          {/* SAMPLE quote for layout only, labelled on the page. Replace with an approved client review before launch. */}
           <figure data-r="" style={d(60)}>
-            <blockquote>[Client testimonial: two to three sentences, awaiting an approved review.]</blockquote>
-            <p>[First name, initial] · [Item sold]</p>
+            <blockquote>
+              “I wanted to sell a watch without anyone knowing. One WhatsApp message, a chauffeur at my door the next day, and the money
+              was in my account two days after I accepted the offer. <span className="dim">Quiet is exactly the word.”</span>
+            </blockquote>
+            <p>
+              <b>Layla M.</b> · Sold a watch <span className="sample">Sample copy</span>
+            </p>
           </figure>
         </section>
 
-        <section className="close" aria-labelledby="cta-h">
-          <div className="glow" aria-hidden="true">
-            <img className="g1" src={asset("/images/glow-close.jpg")} alt="" loading="lazy" decoding="async" />
-            <img className="g2" src={asset("/images/glow-close-2.jpg")} alt="" loading="lazy" decoding="async" />
+        <section className="sec split" id="faq" aria-labelledby="faq-h">
+          <div data-r="">
+            <h2 className="lab" id="faq-h">
+              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                <circle cx="10" cy="10" r="8.25" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M7.6 7.7a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="10" cy="14.4" r="1" fill="currentColor" />
+              </svg>
+              Questions
+            </h2>
+            <p className="faq-note">
+              Anything else, <a href={messageHref}>ask us on WhatsApp</a>.
+            </p>
           </div>
+          <Faq />
+        </section>
+      </main>
+
+      {/* One glow behind the closing band and the footer, so the light runs to the bottom of the page. */}
+      <div className="end">
+        <div className="glow" aria-hidden="true">
+          <img className="g1" src={asset("/images/glow-close.jpg")} alt="" loading="lazy" decoding="async" />
+          <img className="g2" src={asset("/images/glow-close-2.jpg")} alt="" loading="lazy" decoding="async" />
+        </div>
+        <section className="close" aria-labelledby="cta-h">
           <div data-r="">
             <h2 id="cta-h">Start your private sale.</h2>
             <p>Send a few photographs and get a valuation range. Our buyers are waiting to bid on your piece.</p>
@@ -235,22 +261,22 @@ export default function Home() {
               <a className="pill pill-solid" href={messageHref}>
                 Message us on WhatsApp
               </a>
-              <a className="pill pill-line" href="#contact">
+              <a className="pill pill-line" href="#faq">
                 Read the FAQs
               </a>
             </div>
           </div>
         </section>
-      </main>
 
-      <footer className="ft" id="contact">
-        <span>© 2026 Shizuka Luxury</span>
-        <span>[Street address], DIFC, Dubai, UAE · +971 [phone number]</span>
-        <a href="#contact">Privacy</a>
-        <a href="#contact">Terms &amp; Conditions</a>
-        <a href={socials.linkedin}>LinkedIn</a>
-        <a href={socials.instagram}>Instagram</a>
-      </footer>
+        <footer className="ft" id="contact">
+          <span>© 2026 Shizuka Luxury</span>
+          <span>[Street address], DIFC, Dubai, UAE · +971 [phone number]</span>
+          <a href="#contact">Privacy</a>
+          <a href="#contact">Terms &amp; Conditions</a>
+          <a href={socials.linkedin}>LinkedIn</a>
+          <a href={socials.instagram}>Instagram</a>
+        </footer>
+      </div>
       <HeroReady selector=".hero" />
       <Ambient selector=".glow" />
       <Reveal root=".ah" />

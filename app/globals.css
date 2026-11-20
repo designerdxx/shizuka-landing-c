@@ -61,7 +61,8 @@ body{margin:0;background:#0B0908}
 /* hero */
 .hero{position:relative;min-height:900px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,4vw,72px);align-items:center;padding:100px var(--g) 56px;isolation:isolate}
 .glow{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;isolation:isolate;background:var(--ink);-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}
-.close .glow{-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+.end{position:relative;isolation:isolate}
+.end>.glow{-webkit-mask-image:linear-gradient(180deg,transparent,#000 20%);mask-image:linear-gradient(180deg,transparent,#000 20%)}
 /* Each light is its own layer on pure black, screen-blended, so the two drift independently.
    Ambient loops: slow sine ease-in-out (never linear), small amplitude, so the type stays the focal point. */
 .glow img{position:absolute;left:-25%;top:-25%;width:150%;height:150%;object-fit:cover;mix-blend-mode:screen;will-change:transform;animation-duration:18s;animation-timing-function:var(--sine);animation-iteration-count:infinite;animation-direction:alternate}
@@ -134,14 +135,18 @@ body{margin:0;background:#0B0908}
 .wide-top span{font:500 14px/1.3 var(--font-ui),system-ui,sans-serif;white-space:nowrap}
 
 /* client words */
-.rq blockquote{font:400 clamp(26px,2.45vw,36px)/1.24 var(--font-display),Georgia,serif;color:var(--faint);max-width:24em}
-.rq p{margin-top:20px;font-size:14px;color:var(--dim)}
+.rq blockquote{font:400 clamp(26px,2.45vw,36px)/1.24 var(--font-display),Georgia,serif;color:var(--cream);max-width:24em}
+.rq blockquote .dim{color:var(--dim)}
+.rq p{margin-top:24px;font-size:14px;color:var(--dim);display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.rq p b{font-weight:500;color:var(--cream)}
+/* dummy content is labelled so it can't be mistaken for a real review; replace before launch */
+.rq .sample{margin-left:6px;padding:3px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(244,239,232,.25);font-size:12px;color:var(--faint)}
 
 /* closing glow */
 .close{position:relative;isolation:isolate;margin-top:160px;height:720px;display:grid;place-items:center;text-align:center;padding:0 var(--g)}
 /* closing band: the two lights sweep past each other along the top and bottom edges, clear of the centred text */
-.close .glow .g1{animation-name:drift-d;animation-duration:8s;animation-delay:-2s;transform-origin:28% 30%}
-.close .glow .g2{animation-name:drift-e;animation-duration:10s;animation-delay:-6s;transform-origin:72% 70%}
+.end .glow .g1{animation-name:drift-d;animation-duration:8s;animation-delay:-2s;transform-origin:28% 30%}
+.end .glow .g2{animation-name:drift-e;animation-duration:10s;animation-delay:-6s;transform-origin:72% 70%}
 .close h2{font:400 clamp(40px,4.4vw,68px)/1.05 var(--font-display),Georgia,serif;letter-spacing:-.015em}
 .close p{margin:18px auto 30px;max-width:40ch;color:rgba(244,239,232,.8);font-size:16px;line-height:1.55}
 .close .acts{justify-content:center}
@@ -150,6 +155,31 @@ body{margin:0;background:#0B0908}
 .ft{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;padding:96px var(--g) 28px;font-size:13px;color:var(--dim)}
 .ft a{text-decoration:underline;text-decoration-color:rgba(244,239,232,.35);text-underline-offset:3px;transition:color 200ms var(--std),text-decoration-color 200ms var(--std)}
 .ft a:hover{color:var(--cream);text-decoration-color:var(--cream)}
+
+/* ---------- FAQ (split like the other sections) ---------- */
+.qa{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.qa li{border-bottom:1px solid var(--line)}
+.qa h3{margin:0;font:inherit}
+.qa button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:20px;align-items:center;padding:24px 0;cursor:pointer;font:400 clamp(20px,1.7vw,24px)/1.25 var(--font-display),Georgia,serif;letter-spacing:-.01em;color:var(--cream)}
+.qa button:focus-visible{outline:1.5px solid var(--cream);outline-offset:4px;border-radius:6px}
+.qa .ico{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(244,239,232,.4);transition:transform 180ms var(--in),background-color 200ms var(--std),box-shadow 200ms var(--std),scale 120ms var(--std)}
+.qa button:hover .ico{background:rgba(244,239,232,.1)}
+.qa button:active .ico{scale:.94}
+/* open: the plus turns into an outlined ×, no fill; the ring brightens a little */
+.qa li.on .ico{transform:rotate(45deg);box-shadow:inset 0 0 0 1px rgba(244,239,232,.85);transition:transform 260ms var(--out),background-color 200ms var(--std),box-shadow 200ms var(--std),scale 120ms var(--std)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows 180ms var(--in)}
+.qa li.on .ans{grid-template-rows:1fr;transition:grid-template-rows 260ms var(--out)}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{padding:0 60px 26px 0;color:var(--dim);font-size:16px;line-height:1.6;max-width:60ch;opacity:0;transition:opacity 150ms var(--in)}
+.qa li.on .ans p{opacity:1;transition:opacity 220ms var(--out) 60ms}
+
+.faq-note{margin-top:18px;font-size:14px;color:var(--dim)}
+.faq-note a{color:var(--cream);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(244,239,232,.35);transition:text-decoration-color 200ms var(--std)}
+.faq-note a:hover{text-decoration-color:var(--cream)}
+@media (max-width: 760px){
+  .qa button{padding:20px 0;gap:14px}
+  .qa .ans p{padding-right:8px}
+}
 
 /* reveal */
 [data-r]{transition:opacity 900ms var(--out) var(--d,0ms),transform 900ms var(--out) var(--d,0ms),filter 900ms var(--out) var(--d,0ms)}
@@ -204,12 +234,13 @@ body{margin:0;background:#0B0908}
   .wide img{object-position:42% 40%}
   .rq blockquote{font-size:24px}
   .close{margin-top:112px;height:620px}
-  .close .glow img{object-position:96% 50%}
+  .end .glow img{object-position:96% 50%}
   .close .acts{width:100%}
   .more-row{justify-content:flex-start}
   .ft{padding-top:72px;flex-direction:column;align-items:flex-start}
 }
 @media (prefers-reduced-motion: reduce){
+  .qa .ico,.qa li.on .ico{transition:background-color 200ms var(--std),box-shadow 200ms var(--std)}
   html{scroll-behavior:auto}
   .glow,.glow img,.ln>span,.hero-sub,.hero-copy .acts,.beats,.piece{animation:none}
   [data-r]{transition:opacity 300ms var(--std)}
